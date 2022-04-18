@@ -1,5 +1,6 @@
 import './index.css'
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import TeamCard from '../TeamCard'
 
 class Home extends Component {
@@ -25,21 +26,23 @@ class Home extends Component {
   render() {
     const {teamsList} = this.state
     return (
-      <div className="totalBG">
-        <div className="titleContainer">
-          <img
-            className="IPLlogo"
-            src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
-            alt="ipl logo"
-          />
-          <h1 className="heading">IPLDashboard</h1>
+      <Link to="/">
+        <div className="totalBG">
+          <div className="titleContainer">
+            <img
+              className="IPLlogo"
+              src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
+              alt="ipl logo"
+            />
+            <h1 className="heading">IPLDashboard</h1>
+          </div>
+          <div className="TeamsContainer">
+            {teamsList.map(item => (
+              <TeamCard detailsTeam={item} />
+            ))}
+          </div>
         </div>
-        <div className="TeamsContainer">
-          {teamsList.map(item => (
-            <TeamCard detailsTeam={item} />
-          ))}
-        </div>
-      </div>
+      </Link>
     )
   }
 }
