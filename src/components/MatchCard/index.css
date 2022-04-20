@@ -1,1 +1,31 @@
-/* Write your CSS here */
+.matchContianer {
+  background-color: #1e293b;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  text-align: center;
+  color: #ffffff;
+  margin: 10px;
+  padding: 10px;
+}
+.imgLogo {
+  width: 30%;
+}
+.headingSize {
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: lighter;
+}
+.paraFont {
+  font-size: 12px;
+  font-weight: lighter;
+}
+.losecolor {
+  color: #e31a1a;
+}
+.winColor {
+  color: #18ed66;
+}

@@ -1,6 +1,8 @@
 import './index.css'
 import {Component} from 'react'
+import Loader from 'react-loader-spinner'
 import LatestMatch from '../LatestMatch'
+import MatchCard from '../MatchCard'
 
 class TeamMatches extends Component {
   state = {
@@ -39,50 +41,36 @@ class TeamMatches extends Component {
         matchStatus: data.latest_match_details.match_status,
       },
       isPageLoading: false,
+      recentMatches: data.recent_matches.map(item => ({
+        competingTeam: item.competing_team,
+        competingTeamLogo: item.competing_team_logo,
+        matchStatus: item.match_status,
+        result: item.result,
+      })),
     })
   }
 
   render() {
-    const {teamBanner, bgColor, latestMatchDetails} = this.state
     const {
-      umpires,
-      result,
-      manOfTheMatch,
-      id,
-      date,
-      venue,
-      competingTeam,
-      competingTeamLogo,
-      firstInnings,
-      secondInnings,
-      matchStatus,
-    } = latestMatchDetails
+      teamBanner,
+      bgColor,
+      latestMatchDetails,
+      isPageLoading,
+      recentMatches,
+    } = this.state
 
     return (
       <div className={`totalContainer ${bgColor}`}>
-        <img className="teamBanner" src={teamBanner} alt="namro" />
-        <div className="latestMatchesContainer">
-          <h1 className="cardTitle">Latest Matches</h1>
-          <div className="matchDetailsContainer">
-            <div className="logoandDetailsContainer">
-              <div className="matchDetails">
-                <h1 className="headingFont">{competingTeam}</h1>
-                <h1 className="headingFont">{date}</h1>
-                <p className="parafont">{venue}</p>
-                <p className="parafont">{result}</p>
-              </div>
-              <img src={competingTeamLogo} className="logoteam" />
-            </div>
-            <hr className="linehr" />
-            <h1 className="titles">First Innings</h1>
-            <p className="parafont">{firstInnings}</p>
-            <h1 className="titles">Second Innings</h1>
-            <p className="parafont">{secondInnings}</p>
-            <h1 className="titles">Man Of The Match</h1>
-            <p className="parafont">{manOfTheMatch}</p>
-            <h1 className="titles">Umpires</h1>
-            <p className="parafont">{umpires}</p>
-          </div>
+        <img className="teamBanner" src={teamBanner} alt="team banner" />
+        {isPageLoading ? (
+          <Loader type="Oval" color=" #ffffff" height={50} width={50} />
+        ) : (
+          <LatestMatch latestMatchDetails={latestMatchDetails} />
+        )}
+        <div className="matchesAllContainer">
+          {recentMatches.map(item => (
+            <MatchCard recentMatching={item} />
+          ))}
         </div>
       </div>
     )
