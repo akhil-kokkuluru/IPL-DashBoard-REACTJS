@@ -21,15 +21,15 @@ const LatestMatch = props => {
       <div className="matchDetailsContainer">
         <div className="logoandDetailsContainer">
           <div className="matchDetails">
-            <h1 className="headingFont">{competingTeam}</h1>
-            <h1 className="headingFont">{date}</h1>
+            <p className="headingFont">{competingTeam}</p>
+            <p className="headingFont">{date}</p>
             <p className="parafont">{venue}</p>
             <p className="parafont">{result}</p>
           </div>
           <img
             src={competingTeamLogo}
             className="logoteam"
-            alt={`competing team ${competingTeam}`}
+            alt={`latest match ${competingTeam}`}
           />
         </div>
         <hr className="linehr" />

@@ -51,3 +51,9 @@
   flex-wrap: wrap;
   margin-top: 20px;
 }
+.li,
+ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}

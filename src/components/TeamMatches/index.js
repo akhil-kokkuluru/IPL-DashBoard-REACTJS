@@ -46,8 +46,15 @@ class TeamMatches extends Component {
         competingTeamLogo: item.competing_team_logo,
         matchStatus: item.match_status,
         result: item.result,
+        id: item.id,
       })),
     })
+  }
+
+  loadingProgress = () => {
+    ;<div testid="loader">
+      <Loader type="Oval" color="#ffffff" height={50} width={50} />
+    </div>
   }
 
   render() {
@@ -63,15 +70,17 @@ class TeamMatches extends Component {
       <div className={`totalContainer ${bgColor}`}>
         <img className="teamBanner" src={teamBanner} alt="team banner" />
         {isPageLoading ? (
-          <Loader type="Oval" color=" #ffffff" height={50} width={50} />
+          <div testid="loader">
+            <Loader type="Oval" color="#ffffff" height={50} width={50} />
+          </div>
         ) : (
           <LatestMatch latestMatchDetails={latestMatchDetails} />
         )}
-        <div className="matchesAllContainer">
+        <ul className="matchesAllContainer">
           {recentMatches.map(item => (
-            <MatchCard recentMatching={item} />
+            <MatchCard key={item.id} recentMatching={item} />
           ))}
-        </div>
+        </ul>
       </div>
     )
   }

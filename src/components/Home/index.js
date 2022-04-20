@@ -1,10 +1,11 @@
 import './index.css'
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import TeamCard from '../TeamCard'
 
 class Home extends Component {
-  state = {teamsList: []}
+  state = {teamsList: [], isLoading: true}
 
   componentDidMount() {
     this.renderList()
@@ -20,11 +21,13 @@ class Home extends Component {
         id: item.id,
         teamImageUrl: item.team_image_url,
       })),
+      isLoading: false,
     })
   }
 
   render() {
-    const {teamsList} = this.state
+    const {teamsList, isLoading} = this.state
+
     return (
       <Link to="/">
         <div className="totalBG">
@@ -34,13 +37,19 @@ class Home extends Component {
               src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
               alt="ipl logo"
             />
-            <h1 className="heading">IPLDashboard</h1>
+            <h1 className="heading">IPL Dashboard</h1>
           </div>
-          <div className="TeamsContainer">
-            {teamsList.map(item => (
-              <TeamCard key={item.id} detailsTeam={item} />
-            ))}
-          </div>
+          {isLoading ? (
+            <div testid="loader">
+              <Loader type="Oval" color="#ffffff" height={50} width={50} />
+            </div>
+          ) : (
+            <ul className="TeamsContainer">
+              {teamsList.map(item => (
+                <TeamCard key={item.id} detailsTeam={item} />
+              ))}
+            </ul>
+          )}
         </div>
       </Link>
     )

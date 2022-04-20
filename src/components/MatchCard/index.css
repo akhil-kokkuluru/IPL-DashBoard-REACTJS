@@ -29,3 +29,9 @@
 .winColor {
   color: #18ed66;
 }
+.li,
+ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
