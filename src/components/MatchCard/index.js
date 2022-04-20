@@ -14,7 +14,11 @@ const MatchCard = props => {
 
   return (
     <div className="matchContianer">
-      <img className="imgLogo" src={competingTeamLogo} />
+      <img
+        className="imgLogo"
+        src={competingTeamLogo}
+        alt={`competing team ${competingTeam}`}
+      />
       <h1 className="headingSize">{competingTeam}</h1>
       <p className="paraFont">{result}</p>
       <p className={`paraFont ${colouring}`}>{matchStatus}</p>
