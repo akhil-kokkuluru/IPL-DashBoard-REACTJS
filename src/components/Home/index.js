@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import TeamCard from '../TeamCard'
 
 class Home extends Component {
-  state = {isLoading: true, teamsList: []}
+  state = {teamsList: []}
 
   componentDidMount() {
     this.renderList()
@@ -38,7 +38,7 @@ class Home extends Component {
           </div>
           <div className="TeamsContainer">
             {teamsList.map(item => (
-              <TeamCard detailsTeam={item} />
+              <TeamCard key={item.id} detailsTeam={item} />
             ))}
           </div>
         </div>

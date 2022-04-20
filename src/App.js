@@ -1,7 +1,15 @@
 import './App.css'
-import {Router} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import Home from './components/Home'
+import TeamMatches from './components/TeamMatches'
 
-const App = () => <Home />
+const App = () => (
+  <>
+    <switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/team-matches/:id" component={TeamMatches} />
+    </switch>
+  </>
+)
 
 export default App
