@@ -66,21 +66,28 @@ class TeamMatches extends Component {
       recentMatches,
     } = this.state
 
-    return (
-      <div className={`totalContainer ${bgColor}`}>
+    const renderingEl = (
+      <>
         <img className="teamBanner" src={teamBanner} alt="team banner" />
-        {isPageLoading ? (
-          <div testid="loader">
-            <Loader type="Oval" color="#ffffff" height={50} width={50} />
-          </div>
-        ) : (
-          <LatestMatch latestMatchDetails={latestMatchDetails} />
-        )}
+
+        <LatestMatch latestMatchDetails={latestMatchDetails} />
+
         <ul className="matchesAllContainer">
           {recentMatches.map(item => (
             <MatchCard key={item.id} recentMatching={item} />
           ))}
         </ul>
+      </>
+    )
+    return (
+      <div className={`totalContainer ${bgColor}`}>
+        {isPageLoading ? (
+          <div testid="loader" className="totalContainerC">
+            <Loader type="Oval" color="#ffffff" height={50} width={50} />
+          </div>
+        ) : (
+          renderingEl
+        )}
       </div>
     )
   }
